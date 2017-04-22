@@ -1,0 +1,26 @@
+{
+   "files.exclude": {
+      "**/.git": true,
+      "node_modules": true,
+      "__tests__": true,
+      "android": true,
+      ".babelrc": true,
+      ".buckconfig": true,
+      ".flowconfig": true,
+      ".gitignore": true,
+      ".gitattributes": true,
+      ".watchmanconfig": true,
+      "jsconfig.json": true,
+      "app.json": true,
+      "yarn.lock": true
+   },
+   "editor.tabSize": 3,
+   "editor.insertSpaces": true,
+   "editor.detectIndentation": true,
+   "editor.useTabStops": true,
+   "files.autoSave": "afterDelay",
+   "files.associations": {
+      "*.js": "javascriptreact"
+   },
+   "editor.formatOnSave": true
+}
