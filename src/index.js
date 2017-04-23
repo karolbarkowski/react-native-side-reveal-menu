@@ -2,5 +2,5 @@
 import Menu from './menu';
 import MenuItem from './menuItem';
 
-module.exports.RevealMenu = Menu;
-module.exports.RevealMenuItem = MenuItem;
+module.exports.Menu = Menu;
+module.exports.MenuItem = MenuItem;

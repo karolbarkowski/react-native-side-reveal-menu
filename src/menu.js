@@ -10,8 +10,6 @@ export default class Menu extends React.Component {
         this.state = {
             isOpened: this.props.isOpened || true
         }
-
-
     }
 
     startAnimation(_toValue) {
@@ -37,6 +35,7 @@ export default class Menu extends React.Component {
     }
 
     render() {
+        //child elements are created dynamically so we need to clone them and add ref and key props so we can reference them later on
         this.children = this.props.children.map((child, index) => {
             return React.cloneElement(child, {
                 ref: 'item' + index,

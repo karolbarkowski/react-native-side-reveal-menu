@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { RevealMenu, RevealMenuItem } from './src/index';
+import { Menu, MenuItem } from './src/index';
 
 export default class SideRevealMenuDev extends Component {
   constructor(props) {
@@ -22,23 +22,23 @@ export default class SideRevealMenuDev extends Component {
           <View style={styles.btn}><Text style={{ color: 'white' }}>Rotate</Text></View>
         </TouchableNativeFeedback>
 
-        <RevealMenu ref={component => this.menu = component}>
-          <RevealMenuItem>
+        <Menu ref={component => this.menu = component}>
+          <MenuItem>
             <Icon name="address-book" size={30} color="#fff" />
-          </RevealMenuItem>
-          <RevealMenuItem>
+          </MenuItem>
+          <MenuItem>
             <Icon name="calendar" size={30} color="#fff" />
-          </RevealMenuItem>
-          <RevealMenuItem>
+          </MenuItem>
+          <MenuItem>
             <Icon name="envelope" size={30} color="#fff" />
-          </RevealMenuItem>
-          <RevealMenuItem>
+          </MenuItem>
+          <MenuItem>
             <Icon name="info" size={30} color="#fff" />
-          </RevealMenuItem>
-          <RevealMenuItem>
+          </MenuItem>
+          <MenuItem>
             <Icon name="user" size={30} color="#fff" />
-          </RevealMenuItem>
-        </RevealMenu>
+          </MenuItem>
+        </Menu>
       </View>
     );
   }

@@ -7,6 +7,8 @@ export default class MenuItem extends React.Component {
     constructor(props) {
         super(props);
         this.rotY = new Animated.Value(0);
+
+        this.onLayout = this.onLayout.bind(this);
     }
 
     animate(_toValue, _delay) {
@@ -23,7 +25,10 @@ export default class MenuItem extends React.Component {
         this.rotY.addListener(({ value }) => {
             const y = this.rotY.__getValue();
 
-            const origin = { x: -60, y: 0, z: 0 };
+            //I'm substrating that 10% of width at the end to get rid of some distortions caused by perspective
+            //so the origin of transform is not perfectly aligned with the left side of view, it's a bit outside of it 
+            let xOffest = parseInt(-this.containerWidth / 2) - parseInt(0.1 * this.containerWidth);
+            const origin = { x: xOffest, y: 0, z: 0 };
             let matrix = rotateY(y);
             transformOrigin(matrix, origin);
 
@@ -31,9 +36,13 @@ export default class MenuItem extends React.Component {
         });
     }
 
+    onLayout(e) {
+        this.containerWidth = e.nativeEvent.layout.width;
+    }
+
     render() {
         return (
-            <View style={styles.boxContainer} ref={component => this.menuItem = component}>
+            <View style={styles.boxContainer} ref={component => this.menuItem = component} onLayout={this.onLayout}>
                 <View style={styles.box}>
                     {this.props.children}
                 </View>
