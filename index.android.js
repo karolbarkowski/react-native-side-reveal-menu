@@ -1,45 +1,39 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, TouchableNativeFeedback, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Menu, MenuItem } from './src/index';
 
 export default class SideRevealMenuDev extends Component {
-  constructor(props) {
-    super(props);
+  onMenuItemPressed(item) {
 
-    this.onBtnRotate = this.onBtnRotate.bind(this);
-  }
-
-  onBtnRotate() {
-    this.menu.toggle();
   }
 
   render() {
     return (
       <View style={styles.container}>
 
-        <TouchableNativeFeedback onPress={this.onBtnRotate.bind(this)}>
-          <View style={styles.btn}><Text style={{ color: 'white' }}>Rotate</Text></View>
+        <TouchableNativeFeedback onPress={() => this.menu.toggle()}>
+          <View style={styles.btn}><Text style={{ color: 'white' }}>Toggle Menu</Text></View>
         </TouchableNativeFeedback>
 
-        <Menu ref={component => this.menu = component}>
-          <MenuItem>
-            <Icon name="address-book" size={30} color="#fff" />
+        <Menu ref={component => this.menu = component} borderRadius={6} onShow={() => console.log('Menu Opened')} onHide={() => console.log('Menu Hidden')}>
+          <MenuItem onPress={() => console.log('Adress book pressed')}>
+            <Icon name="address-book" size={25} color="#fff" />
           </MenuItem>
-          <MenuItem>
-            <Icon name="calendar" size={30} color="#fff" />
+          <MenuItem onPress={() => console.log('Calendar pressed')}>
+            <Icon name="calendar" size={25} color="#fff" />
           </MenuItem>
-          <MenuItem>
-            <Icon name="envelope" size={30} color="#fff" />
+          <MenuItem onPress={() => console.log('Envelope pressed')}>
+            <Icon name="envelope" size={25} color="#fff" />
           </MenuItem>
-          <MenuItem>
-            <Icon name="info" size={30} color="#fff" />
+          <MenuItem onPress={() => console.log('Info pressed')}>
+            <Icon name="info" size={25} color="#fff" />
           </MenuItem>
-          <MenuItem>
-            <Icon name="user" size={30} color="#fff" />
+          <MenuItem onPress={() => console.log('User pressed')}>
+            <Icon name="user" size={25} color="#fff" />
           </MenuItem>
         </Menu>
-      </View>
+      </View >
     );
   }
 }

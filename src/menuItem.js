@@ -1,15 +1,36 @@
 import React from 'react';
 
 import { transformOrigin, rotateY } from './martixUtils';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableNativeFeedback } from 'react-native';
 
 export default class MenuItem extends React.Component {
+    static propTypes = {
+        onPress: React.PropTypes.func
+    }
+
+    static defaultProps = {
+        onPress: () => { }
+    }
+
     constructor(props) {
         super(props);
         this.rotY = new Animated.Value(0);
 
         this.onLayout = this.onLayout.bind(this);
+        this.onPress = this.onPress.bind(this);
+
+        this.state = {
+            isActive: false
+        }
     }
+
+    setActiveState(_isActive) {
+        this.setState({
+            isActive: _isActive
+        });
+    }
+
+
 
     animate(_toValue, _delay) {
         Animated.timing(
@@ -19,6 +40,14 @@ export default class MenuItem extends React.Component {
                 duration: 150,
                 delay: _delay
             }).start();
+    }
+
+    onPress() {
+        //this is the handler passed from the root menu container (We need to hande item selection in there)
+        this.props.onItemPress();
+
+        //this is the actual prop that is passed frm the outside
+        this.props.onPress(this);
     }
 
     componentDidMount() {
@@ -42,10 +71,23 @@ export default class MenuItem extends React.Component {
 
     render() {
         return (
-            <View style={styles.boxContainer} ref={component => this.menuItem = component} onLayout={this.onLayout}>
-                <View style={styles.box}>
-                    {this.props.children}
-                </View>
+            <View style={[
+                styles.boxContainer,
+                this.state.isActive ? styles.boxContainerActive : {},
+                this.props.isLast ? styles.boxContainerLast : {},
+            ]}
+                ref={component => this.menuItem = component}
+                onLayout={this.onLayout}>
+                <TouchableNativeFeedback onPress={this.onPress}>
+                    <View style={[
+                        styles.box,
+                        this.state.isActive ? styles.boxActive : {},
+                        this.props.borderRadius && this.props.isFirst ? { borderTopRightRadius: this.props.borderRadius } : {},
+                        this.props.borderRadius && this.props.isLast ? { borderBottomRightRadius: this.props.borderRadius } : {}
+                    ]}>
+                        {this.props.children}
+                    </View>
+                </TouchableNativeFeedback>
             </View>);
     }
 }
@@ -55,12 +97,22 @@ const styles = StyleSheet.create({
         borderBottomColor: '#182844',
         borderBottomWidth: 1,
     },
+    boxContainerActive: {
+        borderBottomColor: '#9E3151',
+    },
+    boxContainerLast: {
+        borderBottomWidth: 0,
+    },
     box: {
         padding: 20,
         borderColor: '#393950',
-        borderWidth: 1,
         backgroundColor: '#33334C',
+        borderWidth: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+    },
+    boxActive: {
+        borderColor: '#F04A7B',
+        backgroundColor: '#D64A73',
     }
 });
