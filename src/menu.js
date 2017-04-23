@@ -18,7 +18,7 @@ export default class Menu extends React.Component {
         let _self = this;
 
         this.children.forEach(function (child, index) {
-            this.refs[child.ref].show(_toValue, index * 50);
+            this.refs[child.ref].animate(_toValue, index * 50);
         }, this);
     }
 

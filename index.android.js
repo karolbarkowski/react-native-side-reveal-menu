@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
-import MatrixMath from 'react-native/Libraries/Utilities/MatrixMath';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { RevealMenu, RevealMenuItem } from './src/index';
 
 export default class SideRevealMenuDev extends Component {
@@ -23,10 +23,21 @@ export default class SideRevealMenuDev extends Component {
         </TouchableNativeFeedback>
 
         <RevealMenu ref={component => this.menu = component}>
-          <RevealMenuItem />
-          <RevealMenuItem />
-          <RevealMenuItem />
-          <RevealMenuItem />
+          <RevealMenuItem>
+            <Icon name="address-book" size={30} color="#fff" />
+          </RevealMenuItem>
+          <RevealMenuItem>
+            <Icon name="calendar" size={30} color="#fff" />
+          </RevealMenuItem>
+          <RevealMenuItem>
+            <Icon name="envelope" size={30} color="#fff" />
+          </RevealMenuItem>
+          <RevealMenuItem>
+            <Icon name="info" size={30} color="#fff" />
+          </RevealMenuItem>
+          <RevealMenuItem>
+            <Icon name="user" size={30} color="#fff" />
+          </RevealMenuItem>
         </RevealMenu>
       </View>
     );

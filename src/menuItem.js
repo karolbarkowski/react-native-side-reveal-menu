@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
 import { transformOrigin, rotateY } from './martixUtils';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 
@@ -9,7 +9,7 @@ export default class MenuItem extends React.Component {
         this.rotY = new Animated.Value(0);
     }
 
-    show(_toValue, _delay) {
+    animate(_toValue, _delay) {
         Animated.timing(
             this.rotY,
             {
@@ -17,10 +17,6 @@ export default class MenuItem extends React.Component {
                 duration: 150,
                 delay: _delay
             }).start();
-    }
-
-    hide() {
-
     }
 
     componentDidMount() {
@@ -35,13 +31,11 @@ export default class MenuItem extends React.Component {
         });
     }
 
-
     render() {
         return (
             <View style={styles.boxContainer} ref={component => this.menuItem = component}>
                 <View style={styles.box}>
-                    <Icon name="rocket" text="sample icon" size={30} color="#fff" />
-                    <Text style={styles.text}>Icon Text</Text>
+                    {this.props.children}
                 </View>
             </View>);
     }
@@ -53,16 +47,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     box: {
-        width: 100,
-        padding: 10,
+        padding: 20,
         borderColor: '#393950',
         borderWidth: 1,
         backgroundColor: '#33334C',
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    text: {
-        fontSize: 8,
-        color: '#fff'
     }
 });
