@@ -18,9 +18,6 @@ export default class SideRevealMenuDev extends Component {
 
         <Menu ref={component => this.menu = component}
           isOpened={true}
-          itemAnimDuration={500}
-          itemAnimDelay={300}
-          itemAnimEasing='linear'
         >
           <MenuItem onPress={() => console.log('Adress book pressed')}>
             <Icon name="address-book" size={25} color="#fff" />

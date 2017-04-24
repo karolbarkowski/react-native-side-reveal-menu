@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Animated } from 'react-native';
+import { View, StyleSheet, Animated, Easing } from 'react-native';
 import { shadeColor } from './colorUtils';
 import MenuItem from './menuItem';
 
@@ -14,6 +14,9 @@ export default class Menu extends React.Component {
         inactiveItemColor: React.PropTypes.string,
         activeItemColor: React.PropTypes.string,
         itemsDistribution: React.PropTypes.oneOf(['top', 'center', 'bottom', 'space-between', 'space-around']),
+        itemAnimDuration: React.PropTypes.number,
+        itemAnimDelay: React.PropTypes.number,
+        itemAnimEasing: React.PropTypes.func,
     }
 
     static defaultProps = {
@@ -26,6 +29,9 @@ export default class Menu extends React.Component {
         inactiveItemColor: '#33334C',
         activeItemColor: '#D64A73',
         itemsDistribution: 'top',
+        itemAnimDuration: 150,
+        itemAnimDelay: 50,
+        itemAnimEasingFunction: Easing.inOut(Easing.ease)
     }
 
     constructor(props) {
@@ -47,7 +53,7 @@ export default class Menu extends React.Component {
         let _self = this;
 
         this.children.forEach(function (child, index) {
-            this.refs[child.ref].animate(_toValue, index * 50);
+            this.refs[child.ref].animate(_toValue, index * this.props.itemAnimDelay);
         }, this);
     }
 
@@ -142,6 +148,7 @@ export default class Menu extends React.Component {
                 inactiveItemColorDark: this.props.inactiveItemColorDark,
                 activeItemColorLight: this.props.activeItemColorLight,
                 activeItemColorDark: this.props.activeItemColorDark,
+                itemAnimDuration: this.props.itemAnimDuration,
             });
         });
 

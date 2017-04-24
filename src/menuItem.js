@@ -35,8 +35,9 @@ export default class MenuItem extends React.Component {
             this.rotY,
             {
                 toValue: _toValue,
-                duration: 150,
-                delay: _delay
+                duration: this.props.itemAnimDuration,
+                delay: _delay,
+                easing: this.props.itemAnimEasingFunction
             }).start();
     }
 
