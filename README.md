@@ -86,7 +86,7 @@ AppRegistry.registerComponent('SideRevealMenuDev', () => SideRevealMenuDev);
 |---|---|---|
 |**`onShow`**|Method that runs when menu is showing.|empty|
 |**`onHide`**|Method that runs when menu is hiding.|empty|
-|**`borderRadius`**|Border radius of menu items. Keep in mind that if items are rendered together, only first and last items will have rounded corners. Check examples for more details|0|
+|**`borderRadius`**|Border radius of menu items. Keep in mind that if items are rendered together, only first and last items will have rounded corners.|0|
 |**`hideOnPress`**|Hides menu if set to true and item is pressed.|false|
 |**`showActiveItem`**|Highlights pressed menu item with the `activeItemColor` color if set to true.|true|
 |**`showItemsSeparator`**|Renders a separator between each item.|true|
