@@ -1,23 +1,43 @@
 {
-  "name": "SideRevealMenuDev",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
-  },
-  "dependencies": {
-    "react": "16.0.0-alpha.6",
-    "react-native": "0.43.3"
-  },
-  "devDependencies": {
-    "babel-jest": "19.0.0",
-    "babel-preset-react-native": "1.9.1",
-    "jest": "19.0.2",
+	"name": "react-native-side-reveal-menu",
+	"version": "1.0.0",
+	"description": "Animated menu component for React Native.",
+	"main": "src/index.js",
+	"files": [
+		"*.md",
+		"src"
+	],
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/karolbarkowski/react-native-side-reveal-menu.git"
+	},
+	"author": "Karol Barkowski",
+	"bugs": {
+		"url": "https://github.com/karolbarkowski/react-native-side-reveal-menu/issues"
+	},
+	"homepage": "https://github.com/karolbarkowski/react-native-side-reveal-menu#readme",
+	"keywords": [
+		"react",
+		"native",
+		"react-native",
+		"menu",
+		"animated-menu"
+	],
+	"dependencies": {
+		"react": "16.0.0-alpha.6",
+		"react-native": "0.43.3"
+	},
+	"devDependencies": {
+		"babel-jest": "19.0.0",
+		"babel-preset-react-native": "1.9.1",
+		"jest": "19.0.2",
     "react-native-vector-icons": "^4.0.1",
-    "react-test-renderer": "16.0.0-alpha.6"
-  },
-  "jest": {
-    "preset": "react-native"
-  }
+		"react-test-renderer": "16.0.0-alpha.6"
+	},
+	"jest": {
+		"preset": "react-native"
+	}
 }

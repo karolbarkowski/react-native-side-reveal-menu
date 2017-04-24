@@ -37,15 +37,15 @@ export default class Menu extends React.Component {
     constructor(props) {
         super(props);
 
-        this.props.inactiveItemColorLight = shadeColor(this.props.inactiveItemColor, 5);
-        this.props.inactiveItemColorDark = shadeColor(this.props.inactiveItemColor, -10);
-
-        this.props.activeItemColorLight = shadeColor(this.props.activeItemColor, 5);
-        this.props.activeItemColorDark = shadeColor(this.props.activeItemColor, -10);
-
         this.state = {
             activeItemIndex: null,
             isOpened: this.props.isOpened || true
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.isOpened != prevProps.isOpened) {
+            this.props.isOpened ? this.show() : this.hide();
         }
     }
 
@@ -144,10 +144,10 @@ export default class Menu extends React.Component {
                 showItemsSeparator: this.props.showItemsSeparator,
                 activeItemColor: this.props.activeItemColor,
                 inactiveItemColor: this.props.inactiveItemColor,
-                inactiveItemColorLight: this.props.inactiveItemColorLight,
-                inactiveItemColorDark: this.props.inactiveItemColorDark,
-                activeItemColorLight: this.props.activeItemColorLight,
-                activeItemColorDark: this.props.activeItemColorDark,
+                inactiveItemColorLight: shadeColor(this.props.inactiveItemColor, 5),
+                inactiveItemColorDark: shadeColor(this.props.inactiveItemColor, -10),
+                activeItemColorLight: shadeColor(this.props.activeItemColor, 5),
+                activeItemColorDark: shadeColor(this.props.activeItemColor, -10),
                 itemAnimDuration: this.props.itemAnimDuration,
             });
         });

@@ -1,3 +1,15 @@
+# react-native-side-reveal-menu
+
+Animated menu component for React Native
+
+## Installation
+`npm install react-native-side-reveal-menu`
+
+
+## Example usage
+This example uses react-native-vector-icons package but feel free to put anything else into the MenuItem components.
+
+```javascript
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, TouchableNativeFeedback, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -66,3 +78,28 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('SideRevealMenuDev', () => SideRevealMenuDev);
+```
+
+
+## Properties
+| Prop | Description | Default |
+|---|---|---|
+|**`onShow`**|Method that runs when menu is showing.|empty|
+|**`onHide`**|Method that runs when menu is hiding.|empty|
+|**`borderRadius`**|Border radius of menu items. Keep in mind that if items are rendered together, only first and last items will have rounded corners. Check examples for more details|0|
+|**`hideOnPress`**|Hides menu if set to true and item is pressed.|false|
+|**`showActiveItem`**|Highlights pressed menu item with the `activeItemColor` color if set to true.|true|
+|**`showItemsSeparator`**|Renders a separator between each item.|true|
+|**`inactiveItemColor`**|Default background color of every item. Must be a valid hex value (won't work with named colors like 'red').|`#33334C`|
+|**`activeItemColor`**|Default background color of selected item. Must be a valid hex value (won't work with named colors like 'red').|`#D64A73`|
+|**`itemsDistribution`**|Defines how menu items are distributed. Similar to flex `justifyContent`.|'top', 'center', 'bottom', 'space-between', 'space-around'|
+|**`itemAnimDuration`**|Duration of animation of single menu item in miliseconds.|150|
+|**`itemAnimDelay`**|Delay of susequent menu item animations.|50|
+|**`itemAnimEasing`**|Allow to specify custom easing function. Must be a valid react native easing function.|Easing.inOut(Easing.ease)|
+
+## Component methods
+| Method | Description |
+|---|---|
+| **`toggle()`** | Toggles menu state directly (when you don't use `isOpened` property). To access this method, set the `ref` property on the `<Menu>` compoent nand call `this.refs.menuName.toggle()` |
+| **`show()`** | Similar to `toggle` but shows the menu.|
+| **`hide()`** | Similar to `toggle` but hides the menu.|
