@@ -4,9 +4,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Menu, MenuItem } from './src/index';
 
 export default class SideRevealMenuDev extends Component {
-  onMenuItemPressed(item) {
-
-  }
+  ///TODO:
+  // - menu sterowane przez props a nie this.menu.toggle
+  // - guzior do zamykania menu (jako pierwszy lub ostatni)
+  // - wysokość itemów - auto albo jak w flexbox
+  // - widoczność separatora między itemami
+  // - kolory
 
   render() {
     return (
@@ -16,7 +19,17 @@ export default class SideRevealMenuDev extends Component {
           <View style={styles.btn}><Text style={{ color: 'white' }}>Toggle Menu</Text></View>
         </TouchableNativeFeedback>
 
-        <Menu ref={component => this.menu = component} borderRadius={6} onShow={() => console.log('Menu Opened')} onHide={() => console.log('Menu Hidden')}>
+        <Menu ref={component => this.menu = component}
+          borderRadius={6}
+          onShow={() => console.log('Menu Opened')}
+          onHide={() => console.log('Menu Hidden')}
+          isOpened={true}
+          showCloseButton={true}
+          itemsDistribution={'auto'}
+          showItemsSeparator={true}
+          inactiveItemColor={}
+          activeItemColor={}
+        >
           <MenuItem onPress={() => console.log('Adress book pressed')}>
             <Icon name="address-book" size={25} color="#fff" />
           </MenuItem>

@@ -5,11 +5,15 @@ import { View, Text, StyleSheet, Animated, TouchableNativeFeedback } from 'react
 
 export default class MenuItem extends React.Component {
     static propTypes = {
-        onPress: React.PropTypes.func
+        onPress: React.PropTypes.func,
+        inactiveItemColor: React.PropTypes.string,
+        activeItemColor: React.PropTypes.string,
     }
 
     static defaultProps = {
-        onPress: () => { }
+        onPress: () => { },
+        inactiveItemColor: '#33334C',
+        activeItemColor: '#D64A73'
     }
 
     constructor(props) {
@@ -73,17 +77,17 @@ export default class MenuItem extends React.Component {
         return (
             <View style={[
                 styles.boxContainer,
-                this.state.isActive ? styles.boxContainerActive : {},
-                this.props.isLast ? styles.boxContainerLast : {},
+                this.state.isActive && styles.boxContainerActive,
+                this.props.isLast && styles.boxContainerLast,
             ]}
                 ref={component => this.menuItem = component}
                 onLayout={this.onLayout}>
                 <TouchableNativeFeedback onPress={this.onPress}>
                     <View style={[
                         styles.box,
-                        this.state.isActive ? styles.boxActive : {},
-                        this.props.borderRadius && this.props.isFirst ? { borderTopRightRadius: this.props.borderRadius } : {},
-                        this.props.borderRadius && this.props.isLast ? { borderBottomRightRadius: this.props.borderRadius } : {}
+                        this.state.isActive && styles.boxActive,
+                        this.props.borderRadius && this.props.isFirst && { borderTopRightRadius: this.props.borderRadius },
+                        this.props.borderRadius && this.props.isLast && { borderBottomRightRadius: this.props.borderRadius }
                     ]}>
                         {this.props.children}
                     </View>
