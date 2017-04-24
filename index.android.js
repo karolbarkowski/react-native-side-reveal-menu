@@ -8,8 +8,7 @@ export default class SideRevealMenuDev extends Component {
   // - menu sterowane przez props a nie this.menu.toggle
   // - guzior do zamykania menu (jako pierwszy lub ostatni)
   // - wysokość itemów - auto albo jak w flexbox
-  // - widoczność separatora między itemami
-  // - kolory
+  // - animacja - duration, easing, delay
 
   render() {
     return (
@@ -20,15 +19,9 @@ export default class SideRevealMenuDev extends Component {
         </TouchableNativeFeedback>
 
         <Menu ref={component => this.menu = component}
-          borderRadius={6}
-          onShow={() => console.log('Menu Opened')}
-          onHide={() => console.log('Menu Hidden')}
           isOpened={true}
           showCloseButton={true}
           itemsDistribution={'auto'}
-          showItemsSeparator={true}
-          inactiveItemColor={}
-          activeItemColor={}
         >
           <MenuItem onPress={() => console.log('Adress book pressed')}>
             <Icon name="address-book" size={25} color="#fff" />

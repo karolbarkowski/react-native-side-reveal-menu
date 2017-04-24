@@ -1,21 +1,39 @@
 import React from 'react';
 import { View, StyleSheet, Animated } from 'react-native';
-
+import { shadeColor } from './colorUtils';
 import MenuItem from './menuItem';
 
 export default class Menu extends React.Component {
     static propTypes = {
         onShow: React.PropTypes.func,
-        onHide: React.PropTypes,
+        onHide: React.PropTypes.func,
+        borderRadius: React.PropTypes.number,
+        hideOnPress: React.PropTypes.bool,
+        showActiveItem: React.PropTypes.bool,
+        showItemsSeparator: React.PropTypes.bool,
+        inactiveItemColor: React.PropTypes.string,
+        activeItemColor: React.PropTypes.string,
     }
 
     static defaultProps = {
         onShow: () => { },
         onHide: () => { },
+        borderRadius: null,
+        hideOnPress: false,
+        showActiveItem: true,
+        showItemsSeparator: true,
+        inactiveItemColor: '#33334C',
+        activeItemColor: '#D64A73',
     }
 
     constructor(props) {
         super(props);
+
+        this.props.inactiveItemColorLight = shadeColor(this.props.inactiveItemColor, 5);
+        this.props.inactiveItemColorDark = shadeColor(this.props.inactiveItemColor, -10);
+
+        this.props.activeItemColorLight = shadeColor(this.props.activeItemColor, 5);
+        this.props.activeItemColorDark = shadeColor(this.props.activeItemColor, -10);
 
         this.state = {
             activeItemIndex: null,
@@ -52,8 +70,16 @@ export default class Menu extends React.Component {
             this.setState({
                 activeItemIndex: index
             });
-            this.refs[child.ref].setActiveState(child.ref === pressedChildRef);
+
+            //higlight active item and unhiglight all other items
+            if (this.props.showActiveItem) {
+                this.refs[child.ref].setActiveState(child.ref === pressedChildRef);
+            }
         }, this);
+
+        if (this.props.hideOnPress) {
+            this.hide();
+        }
     }
 
     render() {
@@ -64,8 +90,16 @@ export default class Menu extends React.Component {
                 key: 'item' + index,
                 isFirst: index == 0,
                 isLast: index == this.props.children.length - 1,
+                onItemPress: child => this.onItemPress('item' + index),
+
                 borderRadius: this.props.borderRadius,
-                onItemPress: child => this.onItemPress('item' + index)
+                showItemsSeparator: this.props.showItemsSeparator,
+                activeItemColor: this.props.activeItemColor,
+                inactiveItemColor: this.props.inactiveItemColor,
+                inactiveItemColorLight: this.props.inactiveItemColorLight,
+                inactiveItemColorDark: this.props.inactiveItemColorDark,
+                activeItemColorLight: this.props.activeItemColorLight,
+                activeItemColorDark: this.props.activeItemColorDark,
             });
         });
         return (<View style={styles.menu} ref={component => this.menu = component}>

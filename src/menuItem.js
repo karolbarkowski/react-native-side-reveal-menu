@@ -6,14 +6,10 @@ import { View, Text, StyleSheet, Animated, TouchableNativeFeedback } from 'react
 export default class MenuItem extends React.Component {
     static propTypes = {
         onPress: React.PropTypes.func,
-        inactiveItemColor: React.PropTypes.string,
-        activeItemColor: React.PropTypes.string,
     }
 
     static defaultProps = {
         onPress: () => { },
-        inactiveItemColor: '#33334C',
-        activeItemColor: '#D64A73'
     }
 
     constructor(props) {
@@ -76,47 +72,33 @@ export default class MenuItem extends React.Component {
     render() {
         return (
             <View style={[
-                styles.boxContainer,
-                this.state.isActive && styles.boxContainerActive,
-                this.props.isLast && styles.boxContainerLast,
+                this.props.showItemsSeparator && !this.props.isLast && { borderBottomColor: this.props.inactiveItemColorDark, borderBottomWidth: 1 },
+                this.state.isActive && { borderBottomColor: this.props.activeItemColorDark },
             ]}
                 ref={component => this.menuItem = component}
                 onLayout={this.onLayout}>
+
                 <TouchableNativeFeedback onPress={this.onPress}>
                     <View style={[
                         styles.box,
-                        this.state.isActive && styles.boxActive,
+                        { backgroundColor: this.state.isActive ? this.props.activeItemColor : this.props.inactiveItemColor },
+                        this.props.showItemsSeparator && { borderColor: this.props.inactiveItemColorLight, borderWidth: 1 },
+                        this.state.isActive && { borderColor: this.props.activeItemColorLight },
                         this.props.borderRadius && this.props.isFirst && { borderTopRightRadius: this.props.borderRadius },
-                        this.props.borderRadius && this.props.isLast && { borderBottomRightRadius: this.props.borderRadius }
+                        this.props.borderRadius && this.props.isLast && { borderBottomRightRadius: this.props.borderRadius },
                     ]}>
                         {this.props.children}
                     </View>
                 </TouchableNativeFeedback>
+
             </View>);
     }
 }
 
 const styles = StyleSheet.create({
-    boxContainer: {
-        borderBottomColor: '#182844',
-        borderBottomWidth: 1,
-    },
-    boxContainerActive: {
-        borderBottomColor: '#9E3151',
-    },
-    boxContainerLast: {
-        borderBottomWidth: 0,
-    },
     box: {
         padding: 20,
-        borderColor: '#393950',
-        backgroundColor: '#33334C',
-        borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    boxActive: {
-        borderColor: '#F04A7B',
-        backgroundColor: '#D64A73',
     }
 });
