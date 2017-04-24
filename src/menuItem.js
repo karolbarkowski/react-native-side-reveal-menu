@@ -30,8 +30,6 @@ export default class MenuItem extends React.Component {
         });
     }
 
-
-
     animate(_toValue, _delay) {
         Animated.timing(
             this.rotY,
@@ -72,7 +70,7 @@ export default class MenuItem extends React.Component {
     render() {
         return (
             <View style={[
-                this.props.showItemsSeparator && !this.props.isLast && { borderBottomColor: this.props.inactiveItemColorDark, borderBottomWidth: 1 },
+                this.props.showItemsSeparator && !this.props.roundAll && !this.props.isLast && { borderBottomColor: this.props.inactiveItemColorDark, borderBottomWidth: 1 },
                 this.state.isActive && { borderBottomColor: this.props.activeItemColorDark },
             ]}
                 ref={component => this.menuItem = component}
@@ -86,6 +84,7 @@ export default class MenuItem extends React.Component {
                         this.state.isActive && { borderColor: this.props.activeItemColorLight },
                         this.props.borderRadius && this.props.isFirst && { borderTopRightRadius: this.props.borderRadius },
                         this.props.borderRadius && this.props.isLast && { borderBottomRightRadius: this.props.borderRadius },
+                        this.props.roundAll && { borderTopRightRadius: this.props.borderRadius, borderBottomRightRadius: this.props.borderRadius }
                     ]}>
                         {this.props.children}
                     </View>

@@ -13,6 +13,7 @@ export default class Menu extends React.Component {
         showItemsSeparator: React.PropTypes.bool,
         inactiveItemColor: React.PropTypes.string,
         activeItemColor: React.PropTypes.string,
+        itemsDistribution: React.PropTypes.oneOf(['top', 'center', 'bottom', 'space-between', 'space-around']),
     }
 
     static defaultProps = {
@@ -24,6 +25,7 @@ export default class Menu extends React.Component {
         showItemsSeparator: true,
         inactiveItemColor: '#33334C',
         activeItemColor: '#D64A73',
+        itemsDistribution: 'top',
     }
 
     constructor(props) {
@@ -82,6 +84,45 @@ export default class Menu extends React.Component {
         }
     }
 
+    computeStyle() {
+        let style = {};
+        switch (this.props.itemsDistribution) {
+            case 'top':
+                style = {
+                    top: 0
+                }
+                break;
+            case 'center':
+                style = {
+                    top: 0,
+                    bottom: 0,
+                    justifyContent: 'center'
+                }
+                break;
+            case 'bottom':
+                style = {
+                    bottom: 0
+                }
+                break;
+            case 'space-between':
+                style = {
+                    top: 0,
+                    bottom: 0,
+                    justifyContent: 'space-between'
+                }
+                break;
+            case 'space-around':
+                style = {
+                    top: 0,
+                    bottom: 0,
+                    justifyContent: 'space-around'
+                }
+                break;
+        }
+
+        return style;
+    }
+
     render() {
         //child elements are created dynamically so we need to clone them and add ref and key props so we can reference them later on
         this.children = this.props.children.map((child, index) => {
@@ -90,6 +131,7 @@ export default class Menu extends React.Component {
                 key: 'item' + index,
                 isFirst: index == 0,
                 isLast: index == this.props.children.length - 1,
+                roundAll: this.props.itemsDistribution === 'space-between' || this.props.itemsDistribution == 'space-around',
                 onItemPress: child => this.onItemPress('item' + index),
 
                 borderRadius: this.props.borderRadius,
@@ -102,7 +144,8 @@ export default class Menu extends React.Component {
                 activeItemColorDark: this.props.activeItemColorDark,
             });
         });
-        return (<View style={styles.menu} ref={component => this.menu = component}>
+
+        return (<View style={[styles.menu, this.computeStyle()]} ref={component => this.menu = component}>
             {this.children}
         </View>);
     }
@@ -111,7 +154,6 @@ export default class Menu extends React.Component {
 const styles = StyleSheet.create({
     menu: {
         position: 'absolute',
-        top: 0,
-        left: 0
+        left: 0,
     }
 });

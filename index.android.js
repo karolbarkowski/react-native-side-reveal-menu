@@ -6,8 +6,6 @@ import { Menu, MenuItem } from './src/index';
 export default class SideRevealMenuDev extends Component {
   ///TODO:
   // - menu sterowane przez props a nie this.menu.toggle
-  // - guzior do zamykania menu (jako pierwszy lub ostatni)
-  // - wysokość itemów - auto albo jak w flexbox
   // - animacja - duration, easing, delay
 
   render() {
@@ -20,8 +18,9 @@ export default class SideRevealMenuDev extends Component {
 
         <Menu ref={component => this.menu = component}
           isOpened={true}
-          showCloseButton={true}
-          itemsDistribution={'auto'}
+          itemAnimDuration={500}
+          itemAnimDelay={300}
+          itemAnimEasing='linear'
         >
           <MenuItem onPress={() => console.log('Adress book pressed')}>
             <Icon name="address-book" size={25} color="#fff" />
@@ -47,8 +46,9 @@ export default class SideRevealMenuDev extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
+    paddingBottom: 30,
     alignItems: 'center',
+    justifyContent: 'flex-end',
     backgroundColor: '#F5FCFF'
   },
   btn: {
