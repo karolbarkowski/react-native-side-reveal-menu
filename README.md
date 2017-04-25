@@ -87,7 +87,6 @@ AppRegistry.registerComponent('SideRevealMenuDev', () => SideRevealMenuDev);
 |**`onShow`**|Method that runs when menu is showing.|empty|
 |**`onHide`**|Method that runs when menu is hiding.|empty|
 |**`borderRadius`**|Border radius of menu items. Keep in mind that if items are rendered together, only first and last items will have rounded corners.|0|
-|**`hideOnPress`**|Hides menu if set to true and item is pressed.|false|
 |**`showActiveItem`**|Highlights pressed menu item with the `activeItemColor` color if set to true.|true|
 |**`showItemsSeparator`**|Renders a separator between each item.|true|
 |**`inactiveItemColor`**|Default background color of every item. Must be a valid hex value (won't work with named colors like 'red').|`#33334C`|
@@ -96,10 +95,3 @@ AppRegistry.registerComponent('SideRevealMenuDev', () => SideRevealMenuDev);
 |**`itemAnimDuration`**|Duration of animation of single menu item in miliseconds.|150|
 |**`itemAnimDelay`**|Delay of susequent menu item animations.|50|
 |**`itemAnimEasing`**|Allow to specify custom easing function. Must be a valid react native easing function.|Easing.inOut(Easing.ease)|
-
-## Component methods
-| Method | Description |
-|---|---|
-| **`toggle()`** | Toggles menu state directly (when you don't use `isOpened` property). To access this method, set the `ref` property on the `<Menu>` compoent nand call `this.refs.menuName.toggle()` |
-| **`show()`** | Similar to `toggle` but shows the menu.|
-| **`hide()`** | Similar to `toggle` but hides the menu.|

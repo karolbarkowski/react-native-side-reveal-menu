@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { transformOrigin, rotateY } from './martixUtils';
+import { transformOrigin, rotateY } from './utils/martixUtils';
 import { View, Text, StyleSheet, Animated, TouchableNativeFeedback } from 'react-native';
 
 export default class MenuItem extends React.Component {
@@ -14,30 +14,20 @@ export default class MenuItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.rotY = new Animated.Value(0);
+        this.rotY = new Animated.Value(this.props.isOpened ? 0 : 90);
 
         this.onLayout = this.onLayout.bind(this);
         this.onPress = this.onPress.bind(this);
-
-        this.state = {
-            isActive: false
-        }
     }
 
-    setActiveState(_isActive) {
-        this.setState({
-            isActive: _isActive
-        });
-    }
-
-    animate(_toValue, _delay) {
+    animate(_toValue, _delay, _duration, _easing) {
         Animated.timing(
             this.rotY,
             {
                 toValue: _toValue,
-                duration: this.props.itemAnimDuration,
                 delay: _delay,
-                easing: this.props.itemAnimEasingFunction
+                duration: _duration,
+                easing: _easing
             }).start();
     }
 
@@ -50,6 +40,9 @@ export default class MenuItem extends React.Component {
     }
 
     componentDidMount() {
+
+        this.menuItem.setNativeProps({ style: { transform: [{ perspective: 800 }, { rotateY: this.props.isOpened ? '0deg' : '90deg' }] } });
+
         this.rotY.addListener(({ value }) => {
             const y = this.rotY.__getValue();
 
@@ -72,7 +65,7 @@ export default class MenuItem extends React.Component {
         return (
             <View style={[
                 this.props.showItemsSeparator && !this.props.roundAll && !this.props.isLast && { borderBottomColor: this.props.inactiveItemColorDark, borderBottomWidth: 1 },
-                this.state.isActive && { borderBottomColor: this.props.activeItemColorDark },
+                this.props.isActive && { borderBottomColor: this.props.activeItemColorDark },
             ]}
                 ref={component => this.menuItem = component}
                 onLayout={this.onLayout}>
@@ -80,9 +73,9 @@ export default class MenuItem extends React.Component {
                 <TouchableNativeFeedback onPress={this.onPress}>
                     <View style={[
                         styles.box,
-                        { backgroundColor: this.state.isActive ? this.props.activeItemColor : this.props.inactiveItemColor },
+                        { backgroundColor: this.props.isActive ? this.props.activeItemColor : this.props.inactiveItemColor },
                         this.props.showItemsSeparator && { borderColor: this.props.inactiveItemColorLight, borderWidth: 1 },
-                        this.state.isActive && { borderColor: this.props.activeItemColorLight },
+                        this.props.isActive && { borderColor: this.props.activeItemColorLight },
                         this.props.borderRadius && this.props.isFirst && { borderTopRightRadius: this.props.borderRadius },
                         this.props.borderRadius && this.props.isLast && { borderBottomRightRadius: this.props.borderRadius },
                         this.props.roundAll && { borderTopRightRadius: this.props.borderRadius, borderBottomRightRadius: this.props.borderRadius }
