@@ -1,6 +1,6 @@
 {
 	"name": "react-native-side-reveal-menu",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Animated menu component for React Native.",
 	"main": "src/index.js",
 	"files": [
@@ -34,7 +34,7 @@
 		"babel-jest": "19.0.0",
 		"babel-preset-react-native": "1.9.1",
 		"jest": "19.0.2",
-    "react-native-vector-icons": "^4.0.1",
+		"react-native-vector-icons": "^4.0.1",
 		"react-test-renderer": "16.0.0-alpha.6"
 	},
 	"jest": {
