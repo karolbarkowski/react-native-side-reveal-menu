@@ -2,6 +2,9 @@
 
 Animated menu component for React Native
 
+![](https://i.imgur.com/6d98AMF.gif)
+
+
 ## Installation
 `npm install react-native-side-reveal-menu`
 
