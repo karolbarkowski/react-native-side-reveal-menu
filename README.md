@@ -7,7 +7,7 @@ Inspired by this native android component: https://android-arsenal.com/details/1
 
 
 ## Installation
-`npm install react-native-side-reveal-menu`
+`npm install --save react-native-side-reveal-menu`
 
 
 ## Example usage
@@ -17,7 +17,7 @@ This example uses react-native-vector-icons package but feel free to put anythin
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, TouchableNativeFeedback, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Menu, MenuItem } from './src/index';
+import { Menu, MenuItem } from 'react-native-side-reveal-menu';
 
 export default class SideRevealMenuDev extends Component {
   constructor(props) {
