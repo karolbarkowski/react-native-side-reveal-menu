@@ -136,8 +136,8 @@ export default class SideRevealMenuDev extends Component {
               borderRadius={10}
               inactiveItemColor='#7F0037'
               activeItemColor='#C40055'
-              itemAnimDuration={300}
-              itemAnimDelay={800}
+              itemAnimDuration={100}
+              itemAnimDelay={400}
               showActiveItem={false}
             >
               <MenuItem onPress={() => console.log('Calendar pressed')}>

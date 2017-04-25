@@ -65,7 +65,7 @@ export default class Menu extends React.Component {
             this.refs[child.ref].animate(
                 _toValue,
                 index * this.props.itemAnimDelay,
-                this.props.itemAnimDelay,
+                this.props.itemAnimDuration,
                 this.props.itemAnimEasing);
         }, this);
     }
