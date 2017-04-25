@@ -1,6 +1,7 @@
 # react-native-side-reveal-menu
 
-Animated menu component for React Native
+Animated menu component for React Native.
+Inspired by this native android component: https://android-arsenal.com/details/1/1388
 
 ![](https://i.imgur.com/6d98AMF.gif)
 
